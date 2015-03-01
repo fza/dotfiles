@@ -1,0 +1,31 @@
+# Some environment variables
+export CODEPOT="${HOME}/Codepot"
+export CODESUPPORTDIR="${CODEPOT}/support"
+
+# Vagrant defaults
+export VAGRANTFILEEXTRA="${CODESUPPORTDIR}/vagrant/VagrantfileExtra.rb"
+export VAGRANT_DEFAULT_PROVIDER=parallels
+
+# Set Java home
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+# Load rvm
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+# Some more shortcuts
+alias ll='ls -ahl'
+alias dir='ll'
+alias cdc='cd ~/Codepot'
+alias cdd="cd ~/Desktop"
+alias cdp='cd ~/Codepot/projects'
+alias cdf='cd ~/Codepot/projects/fapprik'
+alias cds='cd ~/Codepot/projects/fza/source'
+alias cdr='cd ~/Codepot/repos'
+alias cdw='cd ~/Codepot/projects/wirlanden'
+alias cdpl='cd ~/Codepot/playground'
+
+# Homebrew stuff
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# XQuartz pkg config path
+export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig
