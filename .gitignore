@@ -1,14 +1,37 @@
-# Compiled Python files
-*.pyc
-
-# Folder view configuration files
-.DS_Store
-Desktop.ini
-
-# Thumbnail cache files
+# ** Generic **
 ._*
-Thumbs.db
+*~
+.bkp
 
-# Files that might appear on external disks
+# Supplemental project data
+_data/*
+*.sublime-project
+*.sublime-workspace
+sftp-config.json
+.atomignore
+.idea/
+
+# OS X
+.DS_Store
+.AppleDouble
+.LSOverride
 .Spotlight-V100
 .Trashes
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Vagrant
+.vagrant/

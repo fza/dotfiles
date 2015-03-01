@@ -79,6 +79,10 @@
 
 [core]
 
+	# Expands to TextWrangler
+	editor = edit
+	quotepath = false
+
 	# Use custom `.gitignore` and `.gitattributes`
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
@@ -159,8 +163,18 @@
 
 	insteadOf = "gst:"
 	pushInsteadOf = "gist:"
-	pushInsteadOf = "git://gist.github.com/"
+	pushInsteadOf = "git://gist.github.com/"c
 
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
+[mergetool]
+
+	keepBackup = false
+
+[user]
+
+	name = Felix Zandanel
+	email = felix@zandanel.me
+	signingkey = B4A41BB0
