@@ -29,3 +29,6 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # XQuartz pkg config path
 export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig
+
+# An even better update alias without gem update (in favor of rvm)
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; vagrant plugin update'
