@@ -16,8 +16,5 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 
-# Backup files
-*~
-
-# Jetbrains IDE files
-.idea
+# Resource directory commonly not to be committed
+_resource

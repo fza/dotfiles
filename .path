@@ -8,7 +8,7 @@ export PATH="~/node_modules/.bin:/usr/local/share/npm/bin:/usr/local/lib/node_mo
 #export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 
 # homebrew-php PEAR scripts
-export PATH="$(brew --prefix php56)/bin:$PATH"
+#export PATH="$(brew --prefix php56)/bin:$PATH"
 
 # Make rvm happy
 export PATH="$PATH:$HOME/.rvm/bin"

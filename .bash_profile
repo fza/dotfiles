@@ -1,6 +1,15 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
 
+# Add Android SDK to `$PATH`
+export PATH="$PATH:/Users/fza/Library/Android/sdk/platform-tools:/Users/fza/Library/Android/sdk/tools"
+
+# Export Android home dir
+export ANDROID_HOME="/Users/fza/Library/Android/sdk/"
+
+# Export Java home dir
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home"
+
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
@@ -26,8 +35,10 @@ for option in autocd globstar; do
 done;
 
 # Add tab completion for many Bash commands
-if which brew > /dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ]; then
-	source "$(brew --prefix)/etc/bash_completion";
+if which brew &> /dev/null && [ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]; then
+	# Ensure existing Homebrew v1 completions continue to work
+	export BASH_COMPLETION_COMPAT_DIR="$(brew --prefix)/etc/bash_completion.d";
+	source "$(brew --prefix)/etc/profile.d/bash_completion.sh";
 elif [ -f /etc/bash_completion ]; then
 	source /etc/bash_completion;
 fi;
@@ -46,3 +57,38 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+# SSH auto completion
+_complete_ssh_hosts ()
+{
+        COMPREPLY=()
+        cur="${COMP_WORDS[COMP_CWORD]}"
+        comp_ssh_hosts=`cat ~/.ssh/known_hosts | \
+                        cut -f 1 -d ' ' | \
+                        sed -e s/,.*//g | \
+                        grep -v ^# | \
+                        uniq | \
+                        grep -v "\[" ;
+                cat ~/.ssh/config | \
+                        grep "^Host " | \
+                        awk '{print $2}'
+                `
+        COMPREPLY=( $(compgen -W "${comp_ssh_hosts}" -- $cur))
+        return 0
+}
+complete -F _complete_ssh_hosts ssh
+
+export PATH=$PATH:~/.nexustools
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# composer
+export PATH="$PATH:~/.composer/vendor/bin"
+
+# Ruby / Gems
+if which ruby >/dev/null && which gem >/dev/null; then
+  PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$(ruby -r rubygems -e 'puts Gem.default_dir')/bin:$PATH"
+fi
